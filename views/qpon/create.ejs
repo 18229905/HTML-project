@@ -1,0 +1,30 @@
+<!--create.ejs-->
+<html>
+<head>
+    <title>Create</title>
+</head>
+
+<form action="/qpon/create" method="post">
+
+    <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+            <input class="input" type="text" name="name" required>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Age</label>
+        <div class="control">
+            <input class="input" type="number" name="age" required>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-link" type="submit">Submit</button>
+        </div>
+    </div>
+
+</form>
+</html>
