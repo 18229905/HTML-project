@@ -12,7 +12,41 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    title: {
+      type: "string"
+    },
+    
+    restaurant: {
+      type: "string"
+    },
 
+    region: {
+      type: "string"
+    },
+
+    mall: {
+      type: "string"
+    },
+
+    image: {
+      type: "string"
+    },
+
+    quota: {
+      type: "number"
+    },
+
+    coins: {
+      type: "number"
+    },
+
+    date: {
+      type: "string"
+    },
+
+    detail: {
+      type: "string"
+    }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

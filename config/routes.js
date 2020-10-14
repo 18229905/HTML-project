@@ -18,8 +18,8 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
- 'GET /qpon/create': 'PersonController.create',
- 'POST /qpon/create': 'PersonController.create',
+ 'GET /qpon/create': 'QponController.create',
+ 'POST /qpon/create': 'QponController.create',
 
 
   '/': { view: 'qpon/homepage' },
@@ -36,4 +36,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+ 'GET /qpon/update/:id': 'QponController.update',
+ 'POST /qpon/update/:id': 'QPonController.update',
+ 'GET /qpon/admin/': 'QponController.list',
+ 'GET /qpon/admin': 'QponController.list',
 };

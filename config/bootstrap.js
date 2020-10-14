@@ -9,6 +9,8 @@
  * https://sailsjs.com/config/bootstrap
  */
 
+
+
 module.exports.bootstrap = async function() {
 
   // By convention, this is a good place to set up fake data during development.
@@ -26,5 +28,14 @@ module.exports.bootstrap = async function() {
   //   // etc.
   // ]);
   // ```
-
+  if (await Qpon.count() > 0) {
+    return;
+}
+  await Qpon.createEach([
+    { title: "50%", restaurant: "ABC",region:"Kowloon",mall:"Elements", image:"www.hkbu.edu.com" ,quota:3,coins:100,date:"28-10-2020",detail:"abc",id:1},
+    { title: "40%", restaurant: "XYZ", region:"NT",mall:"New Town Plaza",image:"www.hkbu.edu.com",quota:5,coins:50,date:"28-10-2020",detail:"xyz", id:2},
+    { title: "30%", restaurant: "XYZ", region:"HKIsland",mall:"IFC Mall",image:"www.hkbu.edu.com",quota:7,coins:70,date:"28-10-2020",detail:"XYZ", id:5}
+    // etc.
+  ]);
+  
 };
