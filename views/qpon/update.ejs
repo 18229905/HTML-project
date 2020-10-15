@@ -1,0 +1,185 @@
+<!--update.ejs-->
+<html>
+<head>
+    <title>Update</title>
+    <style>
+        .column {
+            float: left;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<form action="/qpon/update/<%= qpon.id %>" method="post">
+
+    <br>
+    <br>
+    <br>
+<div class="container">
+    <div class="row">
+        <div class="column">
+            
+                <div class="field">
+                    <label class="label">Title</label>
+                    <div class="control ">
+                        <input class="input" type="text" name="title"  required   value="<%= qpon.title %>"> 
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Restaurant</label>
+                    <div class="control">
+                        <input class="input" type="text" name="restaurant" required value="<%= qpon.restaurant %>">
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field" style="flex-grow: 1;">
+                            <label class="label">Region</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select name="region" onchange="regionSelected(this.value)" value="<%= qpon.region %>" required>
+                                        <option value="">Region</option>
+                                        <option value="Kowloon">Kowloon</option>
+                                        <option value="HKIsland">HK Island</option>
+                                        <option value="NT">NT</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="field" style="flex-grow: 1;">
+                            <label class="label">Mall</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select name = "mall"id="mall" value="<%= qpon.mall %>" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field" >
+                    <label class="label">Image</label>
+                    <div class="control">
+                        <input class="input" type="text" name= "image" required value="<%= qpon.image %>">
+                        <a class ="Image"></a>
+                    </div>
+                </div>
+                
+        </div>
+        <div class="column">
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <label class="label i">Quota</label>
+                    <div class="control ">
+                        <input class="input" type="number" name="quota" required value="<%= qpon.quota %>">
+                    </div>
+                    </div>
+        
+                    <div class="field">
+                        <label class="label">Coins</label>
+                        <div class="control ">
+                            <input class="input" type="number" name="coins" required value="<%= qpon.coins %>">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" > Expiry Date</label>
+                <div class="control">
+                    <input class="input" type="date" name="date" required value="<%= qpon.date %>">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Detail</label>
+                <div class="control">
+                    <textarea name="detail" class="textarea" rows = "4" cols = "25" value="<%= qpon.detail %>"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<form action="/qpon/delete/<%= qpon.id %>" method="post">
+<div class="container">
+    <div class="row">
+        <dic class="column">
+            <div class="field">
+                <div class="control">
+                        <button class="button is-link"type="submit">Delete</button>
+                </div>
+            </div>
+        </dic>
+    </div>
+</div>
+</form>
+
+
+    
+<script>
+    var Kowloon = ["Elements", "Harbour City", "Festival Walk", "MegaBox", "APM"];
+    var HKIsland = ["IFC Mall", "Pacific Place", "Times Square"];
+    var NT = ["New Town Plaza", " Tsuen Wan Plaza"];
+
+    function regionSelected(region) {
+    //alert(region);
+    var mallElem = document.getElementById("mall");
+    mallElem.options.length = 0;
+
+    if (region == "Kowloon") {
+
+    Kowloon.forEach(function (item) {
+    var option = document.createElement("option");
+    option.text = item;
+    option.value = item;
+    mallElem.add(option);
+});
+
+mallElem.disabled = false;
+
+} else if (region == "HKIsland") {
+
+    HKIsland.forEach(function (item) {
+    var option = document.createElement("option");
+    option.text = item;
+    option.value = item;
+    mallElem.add(option);
+});
+
+mallElem.disabled = false;
+
+} else if (region == "NT") {
+
+NT.forEach(function (item) {
+var option = document.createElement("option");
+option.text = item;
+option.value = item;
+mallElem.add(option);
+});
+
+mallElem.disabled = false; 
+
+
+
+}else {
+
+mallElem.disabled = true;
+}
+}
+</script>
+
+
+
+    
+</form>
+</body>
+</html>

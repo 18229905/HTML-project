@@ -1,0 +1,30 @@
+<%= person.id %>
+
+ 'GET /qpon/update/:id': 'QponController.update',
+ 'POST /qpon/update/:id': 'QponController.update'
+
+
+  'GET /qpon/update/:id': 'QponController.update',
+ 'POST /qpon/update/:id': 'QponController.update'
+
+
+ // action - update
+update: async function (req, res) {
+
+    if (req.method == "GET") {
+
+        var thatQpon = await Qpon.findOne(req.params.id);
+
+        if (!thatQpon) return res.notFound();
+
+        return res.view('qpon/update', { qpon: thatQpon });
+        
+    } else {
+    
+        var updatedQpon = await Qpon.updateOne(req.params.id).set(req.body);
+
+        if (!updatedQpon) return res.notFound();
+
+        return res.ok();
+    }
+},

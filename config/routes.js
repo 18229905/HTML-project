@@ -38,6 +38,9 @@ module.exports.routes = {
 
  'GET /qpon/update/:id': 'QponController.update',
  'POST /qpon/update/:id': 'QPonController.update',
- 'GET /qpon/admin/': 'QponController.list',
  'GET /qpon/admin': 'QponController.list',
+ 'GET /qpon/json': 'QponController.json',
+ 
+ 'POST /qpon/delete/:id': 'QponController.delete',
+
 };
