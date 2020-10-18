@@ -36,6 +36,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+
+
+ //'GET /qpon/homepage': 'QponController.show',
  'GET /qpon/update/:id': 'QponController.update',
  'POST /qpon/update/:id': 'QPonController.update',
  'GET /qpon/admin': 'QponController.list',
@@ -43,4 +46,6 @@ module.exports.routes = {
  
  'POST /qpon/delete/:id': 'QponController.delete',
 
+
+ 'GET /qpon/search': 'QponController.search',
 };

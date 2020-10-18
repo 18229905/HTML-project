@@ -8,6 +8,7 @@
             width: 50%;
         }
     </style>
+    
 </head>
 <body>
 <form action="/qpon/create" method="post">
@@ -16,8 +17,8 @@
     <br>
     <br>
 <div class="container">
-    <div class="row">
-        <div class="column">
+    <div class="row is-mobile is-multiline">
+        <div class="column is-half-mobile">
             
                 <div class="field">
                     <label class="label">Title</label>
@@ -33,7 +34,7 @@
                 </div>
                 <div class="field is-horizontal">
                     <div class="field-body">
-                        <div class="field" style="flex-grow: 1;">
+                        <div class="field">
                             <label class="label">Region</label>
                             <div class="control">
                                 <div class="select">
@@ -47,7 +48,7 @@
                             </div>
                         </div>
                     
-                        <div class="field" style="flex-grow: 1;">
+                        <div class="field">
                             <label class="label">Mall</label>
                             <div class="control">
                                 <div class="select">
@@ -62,24 +63,23 @@
                     <label class="label">Image</label>
                     <div class="control">
                         <input class="input" type="text" name= "image" placeholder="Link input" required>
-                        <a class ="Image"></a>
                     </div>
                 </div>
         </div>
-        <div class="column">
+        <div class="column is-half-mobile">
             <div class="field is-horizontal">
                 <div class="field-body">
                     <div class="field">
                         <label class="label i">Quota</label>
                     <div class="control ">
-                        <input class="input" type="number" name="quota" required>
+                        <input class="input" type="number" name="quota" min=1 placeholder=1 required>
                     </div>
                     </div>
         
                     <div class="field">
                         <label class="label">Coins</label>
                         <div class="control ">
-                            <input class="input" type="number" name="coins" required>
+                            <input class="input" type="number" name="coins"  min=1 placeholder=1 required>
                         </div>
                     </div>
 
@@ -121,6 +121,7 @@
 
     if (region == "Kowloon") {
 
+
     Kowloon.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
@@ -131,6 +132,9 @@
 mallElem.disabled = false;
 
 } else if (region == "HKIsland") {
+
+
+
 
     HKIsland.forEach(function (item) {
     var option = document.createElement("option");
@@ -143,11 +147,11 @@ mallElem.disabled = false;
 
 } else if (region == "NT") {
 
-NT.forEach(function (item) {
-var option = document.createElement("option");
-option.text = item;
-option.value = item;
-mallElem.add(option);
+    NT.forEach(function (item) {
+    var option = document.createElement("option");
+    option.text = item;
+    option.value = item;
+    mallElem.add(option);
 });
 
 mallElem.disabled = false; 

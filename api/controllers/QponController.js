@@ -75,5 +75,34 @@ delete: async function (req, res) {
 },
 
 
+// search function
+search: async function (req, res) {
+    
+    var whereClause = {};
+    
+    if (req.query.region) whereClause.region = { contains: req.query.region };
+    
+    var parsedcoins = parseInt(req.query.coins);
+    if (!isNaN(parsedcoins)) whereClause.coins = parsedcoins;
+    
+    var thoseQpons = await Qpon.find({
+    	where: whereClause,
+    	sort: 'title'
+    });
+    
+    return res.view('qpon/admin', { qpons: thoseQpons });
+},
+
+show: async function (req, res) {
+
+    var whereClause = {};
+
+    if(req.query.region) whereClause.region = { contains: req.query.region };
+
+    return res.view('qpon/homepage', { qpons: thoseQpons });
+
+
+}
+
 };
 
