@@ -90,18 +90,14 @@ search: async function (req, res) {
     	sort: 'title'
     });
     
-    return res.view('qpon/admin', { qpons: thoseQpons });
+    return res.view('qpon/search', { qpons: thoseQpons });
 },
 
 show: async function (req, res) {
 
-    var whereClause = {};
-
-    if(req.query.region) whereClause.region = { contains: req.query.region };
-
-    return res.view('qpon/homepage', { qpons: thoseQpons });
-
-
+    var everyones = await Qpon.find();
+    
+    return res.view('qpon/homepage', { qpons: everyones });
 }
 
 };

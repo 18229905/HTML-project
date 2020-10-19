@@ -126,7 +126,7 @@
     
       <div id="navbar" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="http://localhost:1337">
+          <a class="navbar-item" href="http://localhost:1337/qpon/homepage">
             Home
           </a>
     
@@ -170,17 +170,16 @@
 function Clicked() {
 
   var figure = document.querySelector(".navbar-menu");
-
+  var figure2 = document.querySelector(".navbar-burger");
   
-  if(figure.className="is-active"){
-    figure.classList.remove("is-active"); 
+  if(figure.className="navbar-menu"){
+    figure.className="navbar-menu is-active";
+    figure2.className="navbar-burger burger is-active";
   }
-
-  else if(figure.className="navbar-menu"){
-    figure.classList.add("is-active"); 
+  else{
+    figure.classList.remove("is-active");
+    figure2.classList.remove("is-active");
   }
-
-  
 };
 
 </script>

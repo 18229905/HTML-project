@@ -20,7 +20,8 @@ module.exports.routes = {
   ***************************************************************************/
  'GET /qpon/create': 'QponController.create',
  'POST /qpon/create': 'QponController.create',
-
+ 'GET /qpon/read/:id': 'QponController.read',
+ 
 
   '/': { view: 'qpon/homepage' },
 
@@ -38,7 +39,7 @@ module.exports.routes = {
 
 
 
- //'GET /qpon/homepage': 'QponController.show',
+ 'GET /qpon/homepage': 'QponController.show',
  'GET /qpon/update/:id': 'QponController.update',
  'POST /qpon/update/:id': 'QPonController.update',
  'GET /qpon/admin': 'QponController.list',

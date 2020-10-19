@@ -120,8 +120,8 @@
     mallElem.options.length = 0;
 
     if (region == "Kowloon") {
-
-
+    var figures = document.querySelector(".Kowloon")
+    figure.classList.add("selected=“selected”"); 
     Kowloon.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
@@ -132,10 +132,8 @@
 mallElem.disabled = false;
 
 } else if (region == "HKIsland") {
-
-
-
-
+    var figures = document.querySelector(".HKIsland")
+    figure.classList.add("selected=“selected”"); 
     HKIsland.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
@@ -146,14 +144,15 @@ mallElem.disabled = false;
 mallElem.disabled = false;
 
 } else if (region == "NT") {
-
+    var figures = document.querySelector(".NT")
+    figure.classList.add("selected=“selected”"); 
     NT.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
     option.value = item;
     mallElem.add(option);
 });
-
+1
 mallElem.disabled = false; 
 
 
