@@ -38,11 +38,11 @@
                             <label class="label">Region</label>
                             <div class="control">
                                 <div class="select">
-                                    <select name="region" onchange="regionSelected(this.value)">
+                                    <select name="region" onchange="regionSelected(this.value)" required>
                                         <option value="">Region</option>
-                                        <option value="Kowloon">Kowloon</option>
-                                        <option value="HKIsland">HK Island</option>
-                                        <option value="NT">NT</option>
+                                        <option class="Kowloon" value="Kowloon">Kowloon</option>
+                                        <option class="HKIsland" value="HKIsland">HK Island</option>
+                                        <option class="NT"value="NT">NT</option>
                                     </select>
                                 </div>
                             </div>
@@ -120,36 +120,33 @@
     mallElem.options.length = 0;
 
     if (region == "Kowloon") {
-    var figures = document.querySelector(".Kowloon")
-    figure.classList.add("selected=“selected”"); 
     Kowloon.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
     option.value = item;
+    option.className = item;
     mallElem.add(option);
 });
 
 mallElem.disabled = false;
 
 } else if (region == "HKIsland") {
-    var figures = document.querySelector(".HKIsland")
-    figure.classList.add("selected=“selected”"); 
     HKIsland.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
     option.value = item;
+    option.className = item;
     mallElem.add(option);
 });
 
 mallElem.disabled = false;
 
 } else if (region == "NT") {
-    var figures = document.querySelector(".NT")
-    figure.classList.add("selected=“selected”"); 
     NT.forEach(function (item) {
     var option = document.createElement("option");
     option.text = item;
     option.value = item;
+    option.className = item;
     mallElem.add(option);
 });
 1

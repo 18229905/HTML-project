@@ -46,7 +46,7 @@ module.exports = {
 
     detail: {
       type: "string"
-    }
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

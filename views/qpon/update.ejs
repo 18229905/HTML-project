@@ -39,10 +39,21 @@
                                 <div class="select">
                                     <select name="region" onchange="regionSelected(this.value)" value="<%= qpon.region %>" required>
                                         <option value="">Region</option>
-                                        <option value="Kowloon">Kowloon</option>
-                                        <option value="HKIsland">HK Island</option>
-                                        <option value="NT">NT</option>
+                                        <option class="Kowloon" value="Kowloon">Kowloon</option>
+                                        <option class="HKIsland" value="HKIsland">HK Island</option>
+                                        <option class="NT" value="NT">NT</option>
                                     </select>
+                                    <script>
+                                        if("<%= qpon.region %>"=="Kowloon"){
+                                        var figures = document.querySelector(".Kowloon");
+                                        figures.selected = "selected";}
+                                        else if ("<%= qpon.region %>"=="HKIsland"){
+                                        var figures = document.querySelector(".HKIsland");
+                                        figures.selected = "selected";}
+                                        else if ("<%= qpon.region %>"=="NT"){
+                                        var figures = document.querySelector(".NT");
+                                        figures.selected = "selected";}
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +62,7 @@
                             <label class="label">Mall</label>
                             <div class="control">
                                 <div class="select">
-                                    <select name = "mall"id="mall" value="<%= qpon.mall %>" required>
+                                    <select name = "mall"id="mall" required>
                                     </select>
                                 </div>
                             </div>
@@ -95,7 +106,7 @@
             <div class="field">
                 <label class="label">Detail</label>
                 <div class="control">
-                    <textarea name="detail" class="textarea" rows = "4" cols = "25" value="<%= qpon.detail %>"></textarea>
+                    <textarea name="detail" class="textarea" rows = "4" cols = "25"><%= qpon.detail %></textarea>
                 </div>
             </div>
             <div class="field">
@@ -140,6 +151,7 @@
     var option = document.createElement("option");
     option.text = item;
     option.value = item;
+    option.className = item;
     mallElem.add(option);
 });
 
@@ -151,19 +163,23 @@ mallElem.disabled = false;
     var option = document.createElement("option");
     option.text = item;
     option.value = item;
+    option.className = item;
     mallElem.add(option);
 });
 
 mallElem.disabled = false;
 
 } else if (region == "NT") {
-
+    
 NT.forEach(function (item) {
+
 var option = document.createElement("option");
 option.text = item;
 option.value = item;
+option.className = item;
 mallElem.add(option);
 });
+
 
 mallElem.disabled = false; 
 
