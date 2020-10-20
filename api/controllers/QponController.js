@@ -74,6 +74,13 @@ delete: async function (req, res) {
     return res.ok(); 
 },
 
+// search function
+search1: async function (req, res) {
+    
+    var everyones = await Qpon.find();
+    
+    return res.view('qpon/search', { qpons: everyones });
+},
 
 // search function
 search: async function (req, res) {
@@ -81,24 +88,42 @@ search: async function (req, res) {
     var whereClause = {};
     
     if (req.query.region) whereClause.region = { contains: req.query.region };
-    
-    var parsedcoins = parseInt(req.query.coins);
-    if (!isNaN(parsedcoins)) whereClause.coins = parsedcoins;
+    if (req.query.validdate) whereClause.date = { contains: req.query.validdate };
+    var mincoins = parseInt(req.query.mincoin);
+    var maxcoins = parseInt(req.query.maxcoin);
+    if (!isNaN(mincoins || maxcoins)) whereClause.coins = { contains: (mincoins,maxcoins) };
     
     var thoseQpons = await Qpon.find({
     	where: whereClause,
-    	sort: 'title'
+    	sort: 'restaurant'
     });
     
     return res.view('qpon/search', { qpons: thoseQpons });
 },
+
+// action - paginate
+paginate: async function (req, res) {
+
+    var limit = Math.max(req.query.limit, 2) || 2;
+    var offset = Math.max(req.query.offset, 0) || 0;
+
+    var someQpons = await Qpon.find({
+        limit: limit,
+        skip: offset
+    });
+
+    var count = await Qpon.count();
+
+    return res.view('qpon/search', { qponss: someQpons, numOfRecords: count });
+},
+
 
 show: async function (req, res) {
 
     var everyones = await Qpon.find();
     
     return res.view('qpon/homepage', { qpons: everyones });
-}
+},
 
 };
 

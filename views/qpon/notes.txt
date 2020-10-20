@@ -28,3 +28,22 @@ update: async function (req, res) {
         return res.ok();
     }
 },
+
+
+
+<script>
+    
+    var time1, time2;
+    var image1, image2;
+    var id1, id2;
+    if("<%= qpon.date %>" > time1){
+        time1 = "<%= qpon.date %>";
+        image1 = "<%= qpon.image %>";
+        id1 = "<%= qpon.id %>";
+    }
+    else if("<%= qpon.date %>" > time2){
+        time2 = "<%= qpon.date %>";
+        qpon2 = "<%= qpon.image %>";
+        id2 = "<%= qpon.id %>";
+    }
+</script>

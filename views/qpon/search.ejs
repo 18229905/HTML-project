@@ -11,7 +11,75 @@
         <br>
         <p>Redeem your coins for dining coupons.</p>
         </div>
+        <br>
+        <br>
 
+        <div class="container">
+            <div class="row is-mobile is-multiline">
+                <div class="field is-horizontal">
+                    <% qpons.forEach( function(qpon) { %>
+                    <div class="box" style=" width: 300px; height: 400px;">
+                        <img src="<%= qpon.image %>" width="300" height="300">
+                            <div>
+                                <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
+                                <p><%= qpon.title %></p>
+                                <br>
+                                <p>Coins: <%= qpon.coins %></p>
+                            </div>
+                    </div>
+                    <% }); %>
+                    <div class="column is-half-mobile">
+                        <form action="/qpon/search" method="POST">
+                            <div class="field">
+                                <label class="label">Region</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select name="region" onchange="regionSelected(this.value)">
+                                            <option value="">Region</option>
+                                            <option class="Kowloon" value="Kowloon">Kowloon</option>
+                                            <option class="HKIsland" value="HKIsland">HK Island</option>
+                                            <option class="NT"value="NT">NT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Min Coin</label>
+                                <div class="control">
+                                    <input class="input" type="number" name="mincoin">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Man Coin</label>
+                                <div class="control">
+                                    <input class="input" type="number" name="mancoin">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Valid Date</label>
+                                <div class="control">
+                                    <input class="input" type="date" name="validdate">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-link" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        
 
 
     </body>
