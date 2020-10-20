@@ -27,13 +27,10 @@
             <strong>HK Island</strong>
 
             <% qpons.forEach( function(qpon) { %>
-                <tr><td><%= qpon.title %></td></tr>
-            
-
             <div class="box">
-                <img src="<%= Qpon.title %>" width="300" height="300">
+                <img src="<%= qpon.image %>" width="300" height="300">
                 <div>
-                    <p><%= Qpon.title %></p>
+                    <p><%= qpon.title %></p>
                 </div>
             </div>
             <% }); %>
