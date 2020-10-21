@@ -63,6 +63,10 @@
                             <div class="control">
                                 <div class="select">
                                     <select name = "mall"id="mall" required>
+                                        <script>
+                                            var figure = document.querySelector(".<%= qpon.mall %>");
+                                            figure.selected = "selected";
+                                        </script>
                                     </select>
                                 </div>
                             </div>
@@ -178,6 +182,7 @@ option.text = item;
 option.value = item;
 option.className = item;
 mallElem.add(option);
+
 });
 
 
@@ -185,9 +190,6 @@ mallElem.disabled = false;
 
 
 
-}else {
-
-mallElem.disabled = true;
 }
 }
 </script>

@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row is-mobile is-multiline">
                 <div class="field is-horizontal">
-                    <% qponss.forEach( function(qpon) { %>
+                    <% qpons.forEach( function(qpon) { %>
                     <div class="box" style=" width: 300px; height: 400px;">
                         <img src="<%= qpon.image %>" width="300" height="300">
                             <div>
@@ -52,7 +52,7 @@
                             <div class="field">
                                 <label class="label">Man Coin</label>
                                 <div class="control">
-                                    <input class="input" type="String" name="mancoin">
+                                    <input class="input" type="String" name="maxcoin">
                                 </div>
                             </div>
                             <div class="field">
@@ -120,6 +120,7 @@
 </html>
 
 <script>
+
     function setPagination() {
 
         var previousButton = document.getElementById("previousButton");
@@ -133,7 +134,7 @@
         var numOfRecords = parseInt("<%= Records %>");
         var limit = Math.max(parseInt("<%= req.query.limit %>"), 2) || 2;
         var offset = Math.max(parseInt("<%= req.query.offset %>"), 0) || 0;
-
+        
         var baseUrl = "/qpon/search?limit=" + limit + "&offset=";
 
         firstLink.href = baseUrl + 0;

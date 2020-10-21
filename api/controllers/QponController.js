@@ -91,30 +91,18 @@ search: async function (req, res) {
     if (req.query.validdate) whereClause.date = { contains: req.query.validdate };
     var mincoins = parseInt(req.query.mincoin);
     var maxcoins = parseInt(req.query.maxcoin);
-    if (!isNaN(mincoins || maxcoins)) whereClause.coins = { contains: (mincoins,maxcoins) };
-    
-    var thoseQpons = await Qpon.find({
-    	where: whereClause,
-    	sort: 'restaurant'
-    });
-    
-    return res.view('qpon/search', { qpons: thoseQpons });
-},
-
-// action - paginate
-paginate: async function (req, res) {
-
+    if (!isNaN(mincoins || maxcoins)) whereClause.coins = { contains: Range(mincoins,maxcoins) };
     var limit = Math.max(req.query.limit, 2) || 2;
     var offset = Math.max(req.query.offset, 0) || 0;
 
-    var someQpons = await Qpon.find({
+    var thoseQpons = await Qpon.find({
+    	where: whereClause,
+        sort: 'restaurant',
         limit: limit,
         skip: offset
     });
-
     var count = await Qpon.count();
-
-    return res.view('qpon/search', { qponss: someQpons, Records: count });
+    return res.view('qpon/search', { qpons: thoseQpons, Records: count});
 },
 
 

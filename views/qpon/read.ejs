@@ -8,17 +8,19 @@
         <br>
         <br>
     <div class="container">
-        <div class="row is-mobile">
+        <div class="row is-mobile is-multiline">
+            <div class="field is-horizontal">
                 <div>
-                    <img style="width:128px;height:128px;"  src="<%= qpon.image %>"/>
+                    <img style="width:720px;height:720px;"  src="<%= qpon.image %>"/>
                 </div>
-                <ul>
+                <ul style="list-style: initial;">
                     <li><strong><%= qpon.restaurant %></strong></li>
                     <li><strong><%= qpon.detail %></strong></li>
                     <li><strong>Coins: <%= qpon.coins %></strong></li>
                     <li><strong>Address: <%= qpon.mall %>, <%= qpon.region %></strong></li>
                     <li><strong>Expiry Date: <%= qpon.date %></strong></li>
                 </ul>
+            </div>
         </div>
     </div>
     </body>

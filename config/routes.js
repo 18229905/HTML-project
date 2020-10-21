@@ -49,6 +49,6 @@ module.exports.routes = {
 
  'GET /qpon/search': 'QponController.search',
  'POST /qpon/search': 'QponController.search',
- 'GET /qpon/search': 'QponController.paginate',
+
 
 };
