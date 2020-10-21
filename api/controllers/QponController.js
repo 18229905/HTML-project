@@ -114,7 +114,7 @@ paginate: async function (req, res) {
 
     var count = await Qpon.count();
 
-    return res.view('qpon/search', { qponss: someQpons, numOfRecords: count });
+    return res.view('qpon/search', { qponss: someQpons, Records: count });
 },
 
 
