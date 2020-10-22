@@ -24,6 +24,7 @@ module.exports.routes = {
  
 
   '/': { view: 'qpon/homepage' },
+  'GET /': 'QponController.show',
 
 
   /***************************************************************************

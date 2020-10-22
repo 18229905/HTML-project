@@ -134,8 +134,9 @@
         var numOfRecords = parseInt("<%= Records %>");
         var limit = Math.max(parseInt("<%= req.query.limit %>"), 2) || 2;
         var offset = Math.max(parseInt("<%= req.query.offset %>"), 0) || 0;
-        
-        var baseUrl = "/qpon/search?limit=" + limit + "&offset=";
+        var vdate = "<%= req.query.validdate %>";
+        var vregion = "<%= req.query.region %>";
+        var baseUrl = "/qpon/search?region="+ vregion + "&validdate=" + vdate + "&limit=" + limit + "&offset=";
 
         firstLink.href = baseUrl + 0;
         previousButton.href = baseUrl + (offset - limit);
