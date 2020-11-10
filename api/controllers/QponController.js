@@ -14,7 +14,7 @@ create: async function (req, res) {
     
     var qpon = await Qpon.create(req.body).fetch();
 
-    return res.ok();
+    return res.redirect('/qpon/homepage');
 
 },
 
@@ -86,9 +86,9 @@ search1: async function (req, res) {
 search: async function (req, res) {
     
     var whereClause = {};
-    var now = Date(now);
+    
     if (req.query.region) whereClause.region = { contains: req.query.region };
-    if (req.query.validdate) whereClause.date = { '>=': req.query.validdate };
+    if (req.query.validdate) whereClause.date = { '<=': req.query.validdate };
     var mincoins = parseInt(req.query.mincoin);
     var maxcoins = parseInt(req.query.maxcoin);
     if (!isNaN(mincoins)) whereClause.coins = { '>=': mincoins };
@@ -122,6 +122,17 @@ show: async function (req, res) {
     var everyones = await Qpon.find();
     
     return res.view('qpon/homepage', { qpons: everyones });
+},
+
+
+populate: async function (req, res) {
+
+    var qpon = await Qpon.findOne(req.params.id).populate("redeemedby");
+
+    if (!qpon) return res.notFound();
+
+    return res.view('qpon/list', { qpons: qpon });
+    //return res.json(qpon);
 },
 
 };

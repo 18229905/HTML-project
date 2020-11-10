@@ -13,10 +13,6 @@
 </head>
 <body>
 <form action="/qpon/create" method="post">
-
-    <br>
-    <br>
-    <br>
 <div class="container">
     <div class="row is-mobile is-multiline">
         <div class="column is-half-mobile">
@@ -101,7 +97,7 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <button class="button is-link" type="submit" onclick="createQpon()">Submit</button>
+                    <button class="button is-link" type="submit" onclick="createQpon('<%= Qpon.id %>')">Submit</button>
                 </div>
             </div>
         </div>
@@ -161,11 +157,11 @@ mallElem.disabled = true;
 }
 }
 
-async function createQpon() {
+async function createQpon(id) {
     var r = confirm("Confirm Create?");
             
     if (r) {
-        var response = await fetch("/qpon/" + id, {
+        var response = await fetch("/qpon/" +id, {
         method: "POST",
     });
     

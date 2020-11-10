@@ -55,5 +55,46 @@ module.exports = {
         });
     },
 
+    populate: async function (req, res) {
+
+        var user = await User.findOne(req.params.id).populate("redeemed");
+    
+        if (!user) return res.notFound();
+    
+        return res.json(user);
+    },
+
+    add: async function (req, res) {
+
+        if (!await User.findOne(req.params.id)) return res.status(404).json("User not found.");
+        
+        var thatQpon = await Qpon.findOne(req.params.fk).populate("redeemedby", {id: req.params.id});
+    
+        if (!thatQpon) return res.status(404).json("Qpon not found.");
+            
+        if (thatQpon.redeemedby.length > 0)
+            return res.status(409).json("Already added.");   // conflict
+        
+        await User.addToCollection(req.params.id, "redeemed").members(req.params.fk);
+    
+        return res.ok();
+    },
+
+    remove: async function (req, res) {
+
+        if (!await User.findOne(req.params.id)) return res.status(404).json("User not found.");
+        
+        var thatQpon = await Qpon.findOne(req.params.fk).populate("redeemedby", {id: req.params.id});
+        
+        if (!thatQpon) return res.status(404).json("Qpon not found.");
+    
+        if (thatQpon.redeemedby.length == 0)
+            return res.status(409).json("Nothing to delete.");    // conflict
+    
+        await User.removeFromCollection(req.params.id, "redeemed").members(req.params.fk);
+    
+        return res.ok();
+    },
+
 };
 

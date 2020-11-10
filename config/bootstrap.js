@@ -69,5 +69,7 @@ module.exports.bootstrap = async function() {
     { title: "20% off", restaurant: "XYZ restaurant", region:"HKIsland",mall:"IFC Mall",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS11861AzIJC5_roP5IM2E4zGoAsTbWW-nbhg&usqp=CAU",quota:7,coins:70,date:"2020-10-27",detail:"XYZ", id:4}
     // etc.
   ]);
+
+  
   
 }};
