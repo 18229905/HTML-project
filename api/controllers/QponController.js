@@ -86,9 +86,9 @@ search1: async function (req, res) {
 search: async function (req, res) {
     
     var whereClause = {};
-    
+    var now = Date(now);
     if (req.query.region) whereClause.region = { contains: req.query.region };
-    if (req.query.validdate) whereClause.date = { '<=': req.query.validdate };
+    if (req.query.validdate) whereClause.date = { '>=': req.query.validdate };
     var mincoins = parseInt(req.query.mincoin);
     var maxcoins = parseInt(req.query.maxcoin);
     if (!isNaN(mincoins)) whereClause.coins = { '>=': mincoins };

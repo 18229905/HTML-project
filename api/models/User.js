@@ -42,6 +42,11 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+    redeeded: {
+      collection: 'Qpon',
+      via: 'redeemedby'
+    }
+
   },
   customToJSON: function() {
     // Return a shallow copy of this record with the password removed.

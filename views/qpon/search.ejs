@@ -195,7 +195,7 @@
                     dynamicCode += '</div>'
             });
 
-            document.querySelector("#p2").innerHTML += dynamicCode;
+            document.querySelector("#p2").innerHTML = dynamicCode;
             setPagination(limit,offset,numOfRecords);
         }else{
             alert(response.status + ": " + response.statusText);
