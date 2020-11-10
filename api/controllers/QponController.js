@@ -14,7 +14,7 @@ create: async function (req, res) {
     
     var qpon = await Qpon.create(req.body).fetch();
 
-    return res.status(201).json({ id: qpon.id });
+    return res.ok();
 
 },
 
@@ -36,7 +36,7 @@ list: async function (req, res) {
 
 // action - update
 update: async function (req, res) {
-
+    
     if (req.method == "GET"){    
         var thatQpon = await Qpon.findOne(req.params.id);
 
@@ -88,21 +88,32 @@ search: async function (req, res) {
     var whereClause = {};
     
     if (req.query.region) whereClause.region = { contains: req.query.region };
-    if (req.query.validdate) whereClause.date = { contains: req.query.validdate };
+    if (req.query.validdate) whereClause.date = { '<=': req.query.validdate };
     var mincoins = parseInt(req.query.mincoin);
     var maxcoins = parseInt(req.query.maxcoin);
-    if (!isNaN(mincoins || maxcoins)) whereClause.coins = { contains: Range(mincoins,maxcoins) };
+    if (!isNaN(mincoins)) whereClause.coins = { '>=': mincoins };
+    if (!isNaN(maxcoins)) whereClause.coins = { '<=': maxcoins };
+    if((!isNaN(maxcoins))&&(!isNaN(maxcoins))) whereClause.coins = { '>=': mincoins,'<=': maxcoins };
     var limit = Math.max(req.query.limit, 2) || 2;
     var offset = Math.max(req.query.offset, 0) || 0;
 
     var thoseQpons = await Qpon.find({
     	where: whereClause,
-        sort: 'restaurant',
+        sort: 'id',
         limit: limit,
         skip: offset
     });
-    var count = await Qpon.count();
-    return res.view('qpon/search', { qpons: thoseQpons, Records: count});
+    
+
+    var count = await Qpon.count({where: whereClause});
+    if(req.wantsJSON){
+        return res.json({ qpons: thoseQpons, Records: count});
+    }
+    else{
+        var count = await Qpon.count();
+        return res.view('qpon/search', {Records: count});
+    }
+    
 },
 
 

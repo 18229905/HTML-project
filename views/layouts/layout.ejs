@@ -133,28 +133,46 @@
           <a class="navbar-item" href="http://localhost:1337/qpon/search">
             Search
           </a>
-
-          <a class="navbar-item" href="http://localhost:1337/qpon/create">
-            Create
-          </a>
-    
-          <a class="navbar-item" href="http://localhost:1337/qpon/admin">
-            Admin
-          </a>
+          
+          <% if(req.session.role == "admin") { %>
+            <a class="navbar-item" href="http://localhost:1337/qpon/create">
+              Create
+            </a>
+            
+  
+            <a class="navbar-item" href="http://localhost:1337/qpon/admin">
+              Admin
+            </a>
+            
+            <%} else if(req.session.role == "member"){ %>
+              <a class="navbar-item" href="http://localhost:1337/qpon/redeemed">
+                My Redeemed Coupons
+              </a>
+              <%} else { %>
+  
+  
+                <% } %>
 
           </div>
         </div>
     
         <div class="navbar-end">
           <div class="navbar-item  is-hidden-mobile">
+            <% if(req.session.role == "admin" || req.session.role == "member") { %>
+              <h1>Hi, <%= req.session.username %></h1>
+              <a class="button is-light" href="http://localhost:1337/user/logout" onclick="logout()">
+                Log out
+              </a>
+              <%} else { %>
             <div class="buttons">
               <a class="button is-primary">
                 <strong>Sign up</strong>
               </a>
-              <a class="button is-light">
+              <a class="button is-light" href="http://localhost:1337/user/login">
                 Log in
               </a>
             </div>
+            <% } %>
           </div>
         </div>
       </div>
@@ -180,6 +198,30 @@ function Clicked() {
     figure.classList.remove("is-active");
     figure2.classList.remove("is-active");
   }
+};
+
+
+async function logout() {
+    var r = confirm("Logout?");
+            
+    if (r) {
+        var response = await fetch("/user/logout", {
+        method: "POST",
+    });
+    
+    if (response.ok) {
+        //var html = await response.text();
+        //alert(html);
+
+        alert("Logouted.");
+        location.assign("/qpon/homepage");
+    } else {
+        alert(response.status + ": " + response.statusText);
+    }
+    
+    } else {
+        alert("cancelled");
+    }
 };
 
 </script>

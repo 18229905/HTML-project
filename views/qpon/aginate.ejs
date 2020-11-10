@@ -17,50 +17,47 @@
         <div class="container">
             <div class="row is-mobile is-multiline">
                 <div class="field is-horizontal">
-                <div id="p2" class="field is-horizontal">
-                </div>
-                
-                <div class="column is-half-mobile">
-                    <form action="/qpon/search" method="GET" onsubmit="fetchPage(2,0);return false">
-                        <div class="field">
-                            <label class="label">Region</label>
-                            <div class="control">
-                                <div class="select">
-                                    <select name="region" id="region">
-                                        <option value="">Not Specified</option>
-                                        <option class="Kowloon" value="Kowloon">Kowloon</option>
-                                        <option class="HKIsland" value="HKIsland">HK Island</option>
-                                        <option class="NT"value="NT">NT</option>
-                                    </select>
+                    <div class="column is-half-mobile">
+                        <form action="/qpon/search" method="POST">
+                            <div class="field">
+                                <label class="label">Region</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select name="region">
+                                            <option value="">Not Specified</option>
+                                            <option class="Kowloon" value="Kowloon">Kowloon</option>
+                                            <option class="HKIsland" value="HKIsland">HK Island</option>
+                                            <option class="NT"value="NT">NT</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Min Coin</label>
-                            <div class="control">
-                                <input class="input" type="String" name="mincoin" id="mincoin">
+                            <div class="field">
+                                <label class="label">Min Coin</label>
+                                <div class="control">
+                                    <input class="input" type="String" name="mincoin">
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Max Coin</label>
-                            <div class="control">
-                                <input class="input" type="String" name="maxcoin" id="maxcoin">
+                            <div class="field">
+                                <label class="label">Man Coin</label>
+                                <div class="control">
+                                    <input class="input" type="String" name="maxcoin">
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Valid Date</label>
-                            <div class="control">
-                                <input class="input" type="date" name="validdate" id="validdate">
+                            <div class="field">
+                                <label class="label">Valid Date</label>
+                                <div class="control">
+                                    <input class="input" type="date" name="validdate">
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <button class="button is-link" type="submit">Search</button>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-link" type="submit">Search</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <nav class="pagination" role="navigation" aria-label="pagination">
@@ -94,10 +91,18 @@
 
 
 
+
+
+
         </div>
 
 
 
+
+
+
+
+        
 
 
     </body>
@@ -105,7 +110,7 @@
 
 <script>
 
-    function setPagination(limit,offset,numOfRecords) {
+    function setPagination(limit,offset) {
 
         var previousButton = document.getElementById("previousButton");
         var nextButton = document.getElementById("nextButton");
@@ -115,11 +120,12 @@
         var firstLink = document.getElementById("firstLink");
         var lastLink = document.getElementById("lastLink");
 
-
-        //var limit = Math.max(parseInt("<%= req.query.limit %>"), 2) || 2;
-        //var offset = Math.max(parseInt("<%= req.query.offset %>"), 0) || 0;
-        
-        //var baseUrl = "/qpon/search?region="+ vregion + "&validdate=" + vdate + "&mincoin=" + vmincoin + "&maxcoin=" + vmaxcoin +"&limit=" + limit + "&offset=" + offset;
+        var numOfRecords = parseInt("<%= Records %>");
+        var limit = Math.max(parseInt("<%= req.query.limit %>"), 2) || 2;
+        var offset = Math.max(parseInt("<%= req.query.offset %>"), 0) || 0;
+        var vdate = "<%= req.query.validdate %>";
+        var vregion = "<%= req.query.region %>";
+        var baseUrl = "/qpon/search?region="+ vregion + "&validdate=" + vdate + "&limit=" + limit + "&offset=";
 
         //firstLink.href = baseUrl + 0;
         //previousButton.href = baseUrl + (offset - limit);
@@ -137,6 +143,7 @@
         nextButton.onclick = function () { fetchPage(limit,offset + limit) };
         lastLink.onclick = function () { fetchPage(limit,(Math.ceil(numOfRecords / limit) - 1) * limit) };
 
+
         var currentPageNumber = Math.floor(offset / limit) + 1;
 
         previousLink.innerHTML = currentPageNumber - 1;
@@ -146,57 +153,40 @@
 
         if (offset < limit) {
             previousButton.setAttribute("disabled", true);
-            //previousButton.href = "";
+            previousButton.href = "";
             previousLink.style.display = "none";
-        }else{
-            previousButton.removeAttribute("disabled",false);
-            previousLink.style.display = "block";
         }
 
         if (offset + limit >= numOfRecords) {
             nextButton.setAttribute("disabled", true);
-            //nextButton.href = "";
+            nextButton.href = "";
             nextLink.style.display = "none";
-        }else{
-            nextButton.removeAttribute("disabled",false);
-            nextLink.style.display = "block";
         }
     }
 
 </script>
 
 <script>
-    async function fetchPage(limit,offset,formElem){
-
-        const formData = new FormData(formElem);
-        const searchParams = new URLSearchParams(formData);
-        const queryString = searchParams.toString();
-
-        
-        var vdate = document.getElementById("validdate").value;
-        var vregion = document.getElementById("region").value;
-        var vmincoin = document.getElementById("mincoin").value;
-        var vmaxcoin = document.getElementById("maxcoin").value;
-        var response = await fetch("/qpon/search?region="+ vregion + "&validdate=" + vdate + "&mincoin=" + vmincoin + "&maxcoin=" + vmaxcoin +"&limit=" + limit + "&offset=" + offset);
+    async function fetchPage(limit,offset){
+        var response = await fetch("/qpon/aginate?limit=" + limit + "&offset=" + offset);
         if(response.ok){
-            var qpon = await response.json();
-            var numOfRecords = parseInt(qpon.Records);
-            var dynamicCode = document.querySelector("#p2").innerHTML = '';
+            var qpons = await response.json();
+            var dynamicCode = '<table class="table is-bordered is-striped is-hoverable is-fullwidth">;';
 
-            qpon.qpons.forEach(function(item){
+            qpons.forEach(function(qpon){
                 dynamicCode += '<div class="box" style=" width: 300px; height: 400px;">';
-                    dynamicCode += '<img src="' +item.image +'" width="300" height="300">'
+                    dynamicCode += '<img src="qpon.image" width="300" height="300">'
                     dynamicCode += '<div>'
-                    dynamicCode += '<a class="hyperlink" href="http://localhost:1337/qpon/read/'+item.id+'"><strong style="font-size: x-large;">' +item.restaurant +'</strong></a>'
-                    dynamicCode += '<p>'+item.title +'</p>'
+                    dynamicCode += '<a class="hyperlink" href="http://localhost:1337/qpon/read/"' + qpon.id + "><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>'
+                    dynamicCode += '<p>' + qpon.title + '</p>'
                     dynamicCode += '<br>'
-                    dynamicCode += '<p>Coins: '+item.coins+'</p>'
+                    dynamicCode += '<p>Coins: qpon.coin</p>'
                     dynamicCode += '</div>'
                     dynamicCode += '</div>'
             });
 
-            document.querySelector("#p2").innerHTML += dynamicCode;
-            setPagination(limit,offset,numOfRecords);
+            document.querySelector("#p2").innerHTML = dynamicCode;
+            setPagination(limit,offset);
         }else{
             alert(response.status + ": " + response.statusText);
         }

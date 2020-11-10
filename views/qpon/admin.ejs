@@ -11,10 +11,10 @@
     <p>Redeem your coins for dining coupons.</p>
     <br>
 <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-        <tr><td>ID</td><td>Title</td><td>Restaurant</td><td></td></tr>
+        <tr><td>ID</td><td>Title</td><td>Restaurant</td><td></td><td></td></tr>
     <% qpons.forEach( function(qpon) { %>
     
-        <tr><td><%= qpon.id %></td><td><%= qpon.title %></td><td><%= qpon.restaurant %></td><td><a class="hyperlink" href="http://localhost:1337/qpon/update/<%= qpon.id %>">Update</a></td></tr>
+        <tr><td><%= qpon.id %></td><td><%= qpon.title %></td><td><%= qpon.restaurant %></td><td><a class="hyperlink" href="http://localhost:1337/qpon/update/<%= qpon.id %>">Update</a></td><td><a class="hyperlink" href="http://localhost:1337/qpon/list/<%= qpon.id %>">Redeemed members</a></td></tr>
     
     <% }); %>
 

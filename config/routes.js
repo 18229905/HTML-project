@@ -49,7 +49,12 @@ module.exports.routes = {
  'POST /qpon/delete/:id': 'QponController.delete',
 
  'GET /qpon/search': 'QponController.search',
- 'POST /qpon/search': 'QponController.search',
+ //'POST /qpon/search': 'QponController.search',
 
+
+ 'GET /user': 'UserController.login',
+ 'GET /user/login': 'UserController.login',
+ 'POST /user/login': 'UserController.login',
+ 'POST /user/logout': 'UserController.logout',
 
 };

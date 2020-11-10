@@ -8,6 +8,8 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
+const { update } = require("../api/controllers/QponController");
+
 module.exports.policies = {
 
   /***************************************************************************
@@ -18,4 +20,12 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
+  QponController: {
+    create: 'isAdmin',
+    list: 'isAdmin',
+    update: "isAdmin",
+    json: "isAdmin",
+    delete: "isAdmin",
+  }
+  
 };

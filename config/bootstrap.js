@@ -28,6 +28,37 @@ module.exports.bootstrap = async function() {
   //   // etc.
   // ]);
   // ```
+  sails.bcrypt = require('bcryptjs');
+  var salt = await sails.bcrypt.genSalt(10);
+  
+  return generateUsers();
+  
+  async function generateUsers() {
+  
+    if (await User.count() > 0) {
+      return;
+    }
+    
+    //await User.createEach([
+    //  { username: "admin", password: '123456' },
+    //  { username: "boss", password: '123456' },
+      // etc.
+    //]);
+    var hash = await sails.bcrypt.hash('123456', salt);
+
+    await User.createEach([
+    { username: "admin", password: hash, role:"admin",coin:9999,id:1},
+    { username: "boss", password: hash,role:"member",coin:2000,id:2},
+    { username: "Ken", password: hash,role:"member",coin:500,id:3},
+    { username: "Ben", password: hash,role:"member",coin:1000,id:4},
+    { username: "Ann", password: hash,role:"member",coin:1,id:5},
+    // etc.
+]);
+
+
+
+
+  
   if (await Qpon.count() > 0) {
     return;
 }
@@ -39,4 +70,4 @@ module.exports.bootstrap = async function() {
     // etc.
   ]);
   
-};
+}};
