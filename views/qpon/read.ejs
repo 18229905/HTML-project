@@ -23,6 +23,11 @@
                     <br>
                     <div class="field">
                         <div class="control">
+                            <button type="button" class="button is-link" onclick="deleteredeem('<%= qpon.id %>')">Delete</button>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
                             <button type="button" class="button is-link" onclick="redeem('<%= qpon.id %>')">Redeem</button>
                         </div>
                     </div>
@@ -48,6 +53,29 @@
         //alert(html);
 
         alert("Qpon redeemed.");
+        location.assign("/qpon/homepage");
+    } else {
+        alert(response.status + ": " + response.statusText);
+    }
+    
+    } else {
+        alert("cancelled");
+    }
+};
+
+async function deleteredeem(id) {
+    var r = confirm("Confirm Delete?");
+            
+    if (r) {
+        var response = await fetch("/qpon/read/" + id, {
+        method: "DELETE",
+    });
+    
+    if (response.ok) {
+        //var html = await response.text();
+        //alert(html);
+
+        alert("Qpon deleted.");
         location.assign("/qpon/homepage");
     } else {
         alert(response.status + ": " + response.statusText);

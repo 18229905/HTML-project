@@ -22,6 +22,7 @@ module.exports.routes = {
  'POST /qpon/create': 'QponController.create',
  'GET /qpon/read/:id': 'QponController.read',
  'POST /qpon/read/:id': 'UserController.add',
+ 'DELETE /qpon/read/:id': 'UserController.remove',
  
 
   '/': { view: 'qpon/homepage' },

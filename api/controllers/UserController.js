@@ -84,6 +84,9 @@ module.exports = {
         if (thatQpon.redeemedby.length > 0)
             return res.status(409).json("Already added.");   // conflict
         
+        if (thatQpon.coins > req.session.coin)
+            return res.status(409).json("Not enough money.");   // conflict
+        
         await User.addToCollection(req.session.userid, "redeemed").members(req.params.id);
         var updatedUser = await User.updateOne(req.session.userid).set({
             coin:req.session.coin-thatQpon.coins
@@ -97,17 +100,23 @@ module.exports = {
 
     remove: async function (req, res) {
 
-        if (!await User.findOne(req.params.id)) return res.status(404).json("User not found.");
+        if (!await User.findOne(req.session.userid)) return res.status(404).json("User not found.");
         
-        var thatQpon = await Qpon.findOne(req.params.fk).populate("redeemedby", {id: req.params.id});
+        var thatQpon = await Qpon.findOne(req.params.id).populate("redeemedby", {id: req.session.userid});
         
         if (!thatQpon) return res.status(404).json("Qpon not found.");
     
         if (thatQpon.redeemedby.length == 0)
             return res.status(409).json("Nothing to delete.");    // conflict
     
-        await User.removeFromCollection(req.params.id, "redeemed").members(req.params.fk);
-    
+        await User.removeFromCollection(req.session.userid, "redeemed").members(req.params.id);
+        var updatedUser = await User.updateOne(req.session.userid).set({
+            coin:req.session.coin+thatQpon.coins
+        });
+        if (!updatedUser) return res.notFound();
+        var updatedQpon = await Qpon.updateOne(thatQpon.id).set({
+            quota:thatQpon.quota+1});
+        if (!updatedQpon) return res.notFound();
         return res.ok();
     },
 
