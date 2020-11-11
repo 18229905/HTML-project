@@ -85,7 +85,13 @@ module.exports = {
             return res.status(409).json("Already added.");   // conflict
         
         await User.addToCollection(req.session.userid, "redeemed").members(req.params.id);
-        
+        var updatedUser = await User.updateOne(req.session.userid).set({
+            coin:req.session.coin-thatQpon.coins
+        });
+        if (!updatedUser) return res.notFound();
+        var updatedQpon = await Qpon.updateOne(thatQpon.id).set({
+            quota:thatQpon.quota-1});
+        if (!updatedQpon) return res.notFound();
         return res.ok();
     },
 
