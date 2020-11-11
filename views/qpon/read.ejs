@@ -1,14 +1,15 @@
 <html>
-    <head>
-        <title>Read</title>
-    </head>
 
-    <body>
+<head>
+    <title>Read</title>
+</head>
+
+<body>
     <div class="container">
         <div class="row is-mobile is-multiline">
             <div class="field is-horizontal">
                 <div>
-                    <img style="width:720px;height:720px;"  src="<%= qpon.image %>"/>
+                    <img style="width:720px;height:720px;" src="<%= qpon.image %>" />
                 </div>
                 <ul style="list-style: initial;">
                     <li><strong><%= qpon.restaurant %></strong></li>
@@ -17,8 +18,15 @@
                     <li><strong>Address: <%= qpon.mall %>, <%= qpon.region %></strong></li>
                     <li><strong>Expiry Date: <%= qpon.date %></strong></li>
                 </ul>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-link" type="submit"
+                            onclick="addredeem()">Redeem</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    </body>
+</body>
+
 </html>

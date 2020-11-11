@@ -168,7 +168,7 @@
         <div class="navbar-end">
           <div class="navbar-item  is-hidden-mobile">
             <% if(req.session.role == "admin" || req.session.role == "member") { %>
-              <h1>Hi, <%= req.session.username %></h1>
+              <h1>Hi, <%= req.session.username %> </h1>
               <a class="button is-light" href="http://localhost:1337/user/logout" onclick="logout()">
                 Log out
               </a>

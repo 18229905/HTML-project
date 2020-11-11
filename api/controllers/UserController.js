@@ -60,8 +60,8 @@ module.exports = {
         var user = await User.findOne(req.params.id).populate("redeemed");
     
         if (!user) return res.notFound();
-    
-        return res.json(user);
+        return res.view('qpon/list', { users: user });
+        //return res.json(user);
     },
 
     add: async function (req, res) {
