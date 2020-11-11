@@ -14,7 +14,7 @@ create: async function (req, res) {
     
     var qpon = await Qpon.create(req.body).fetch();
 
-    return res.redirect('/qpon/homepage');
+    return res.ok;
 
 },
 
@@ -131,8 +131,7 @@ populate: async function (req, res) {
 
     if (!qpon) return res.notFound();
 
-    return res.view('qpon/list', { qpons: qpon });
-    //return res.json(qpon);
+    return res.json(qpon);
 },
 
 };

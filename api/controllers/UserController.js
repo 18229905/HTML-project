@@ -26,7 +26,7 @@ module.exports = {
             req.session.password = user.password;
             req.session.role = user.role;
             req.session.coin = user.coin;
-            req.session.id = user.id;
+            req.session.userid = user.id;
             return res.json(user);
         }
         
@@ -35,7 +35,11 @@ module.exports = {
     
             if (err) return res.serverError(err);
     
-            req.session.username = user.username;   
+            req.session.username = user.username; 
+            req.session.password = user.password;
+            req.session.role = user.role;
+            req.session.coin = user.coin;
+            req.session.userid = user.id;
             return res.json(user);
         });
     },
@@ -56,27 +60,32 @@ module.exports = {
     },
 
     populate: async function (req, res) {
-
+        
         var user = await User.findOne(req.params.id).populate("redeemed");
-    
+        
         if (!user) return res.notFound();
-        return res.view('qpon/list', { users: user });
-        //return res.json(user);
+        //
+        return res.json(user);
     },
+    redeemed: async function (req, res) {
+        var user = await User.findOne(req.session.userid).populate("redeemed");
+        return res.view('qpon/redeemed', { users: user });
+    },
+    
 
     add: async function (req, res) {
 
-        if (!await User.findOne(req.params.id)) return res.status(404).json("User not found.");
+        if (!await User.findOne(req.session.userid)) return res.status(404).json("User not found.");
         
-        var thatQpon = await Qpon.findOne(req.params.fk).populate("redeemedby", {id: req.params.id});
+        var thatQpon = await Qpon.findOne(req.params.id).populate("redeemedby", {id: req.session.userid});
     
         if (!thatQpon) return res.status(404).json("Qpon not found.");
             
         if (thatQpon.redeemedby.length > 0)
             return res.status(409).json("Already added.");   // conflict
         
-        await User.addToCollection(req.params.id, "redeemed").members(req.params.fk);
-    
+        await User.addToCollection(req.session.userid, "redeemed").members(req.params.id);
+        
         return res.ok();
     },
 

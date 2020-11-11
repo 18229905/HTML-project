@@ -80,7 +80,7 @@ module.exports.bootstrap = async function() {
   const qpon3 = await Qpon.findOne({title: "30% off"});
   const qpon4 = await Qpon.findOne({title: "20% off"});
 
-  await User.addToCollection(boss.id, 'redeemed').members([qpon1.id,qpon2.id]);
+  await User.addToCollection(boss.id, 'redeemed').members([qpon1.id,qpon2.id,qpon3.id,qpon4.id]);
   await User.addToCollection(Ken.id, 'redeemed').members([qpon2.id,qpon3.id]);
   await User.addToCollection(Ben.id, 'redeemed').members([qpon3.id,qpon4.id]);
   await User.addToCollection(Ann.id, 'redeemed').members([qpon4.id,qpon1.id]);

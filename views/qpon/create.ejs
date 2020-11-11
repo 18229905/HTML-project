@@ -97,7 +97,7 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <button class="button is-link" type="submit" onclick="createQpon('<%= Qpon.id %>')">Submit</button>
+                    <button class="button is-link" type="submit" onclick="createQpon()">Submit</button>
                 </div>
             </div>
         </div>
@@ -157,11 +157,11 @@ mallElem.disabled = true;
 }
 }
 
-async function createQpon(id) {
+async function createQpon() {
     var r = confirm("Confirm Create?");
             
     if (r) {
-        var response = await fetch("/qpon/" +id, {
+        var response = await fetch("/qpon/create/", {
         method: "POST",
     });
     

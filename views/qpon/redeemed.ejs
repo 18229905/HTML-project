@@ -1,0 +1,37 @@
+<head>
+    <title>Redeemed</title>
+
+    <style>
+        .column{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column is-half-mobile">
+            <% users.redeemed.forEach( function(qpon) { %>
+                <div class="column is one-third">
+                    <div class="box">
+                        <img src="<%= qpon.image %>" width="300" height="300">
+                        <div>
+                            <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
+                            <p><%= qpon.title %></p>
+                            <br>
+                            <p>Coins: <%= qpon.coins %></p>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            
+
+            
+            <div class="column is one-third">
+
+            </div>
+            <div class="column is one-third">
+
+            </div>
+        </div>
+    </div>
+</body>

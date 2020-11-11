@@ -21,6 +21,7 @@ module.exports.routes = {
  'GET /qpon/create': 'QponController.create',
  'POST /qpon/create': 'QponController.create',
  'GET /qpon/read/:id': 'QponController.read',
+ 'POST /qpon/read/:id': 'UserController.add',
  
 
   '/': { view: 'qpon/homepage' },
@@ -46,7 +47,7 @@ module.exports.routes = {
  'GET /qpon/admin': 'QponController.list',
  'GET /qpon/json': 'QponController.json',
  
- 'POST /qpon/delete/:id': 'QponController.delete',
+ 'Delete /qpon/delete/:id': 'QponController.delete',
 
  'GET /qpon/search': 'QponController.search',
  //'POST /qpon/search': 'QponController.search',
@@ -63,4 +64,5 @@ module.exports.routes = {
  'POST /user/:id/redeemed/remove/:fk': 'UserController.remove',
 
  'GET /qpon/list/:id': 'QponController.populate',
+ 'GET /qpon/redeemed': 'UserController.redeemed',
 };
