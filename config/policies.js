@@ -26,6 +26,7 @@ module.exports.policies = {
     update: "isAdmin",
     json: "isAdmin",
     delete: "isAdmin",
+    populate: "isAdmin",
   }
   
 };

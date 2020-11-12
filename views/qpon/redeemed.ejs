@@ -1,21 +1,36 @@
 <head>
     <title>Redeemed</title>
 
-    <style>
-        .column{
-            float: left;
-        }
-    </style>
+
 </head>
+
 <body>
     <div class="container">
-        <div class="column is-half-mobile">
-            <% users.redeemed.forEach( function(qpon) { %>
-                <div class="column is one-third">
+        <br>
+        <br>
+        <br>
+        <div class="columns">
+            <div class="column is-half">
+                <strong style="font-size: large;">
+                    Redeemed coupons:
+                </strong>
+            </div>
+            <div class="column is-half">
+                <strong style="font-size: large;">
+                    Current Balance: <%= req.session.coin %>
+                </strong>
+            </div>
+        </div>
+
+        
+            <div class="columns is-multiline is-mobile">
+                <% users.redeemed.forEach( function(qpon) { %>
+                <div class="column is-one-third">
                     <div class="box">
                         <img src="<%= qpon.image %>" width="300" height="300">
                         <div>
-                            <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
+                            <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong
+                                    style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
                             <p><%= qpon.title %></p>
                             <br>
                             <p>Coins: <%= qpon.coins %></p>
@@ -23,15 +38,9 @@
                     </div>
                 </div>
                 <% }); %>
-            
-
-            
-            <div class="column is one-third">
-
             </div>
-            <div class="column is one-third">
+        
+    </div>
 
-            </div>
-        </div>
     </div>
 </body>

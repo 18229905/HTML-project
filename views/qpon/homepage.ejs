@@ -4,68 +4,73 @@
     <title>Homepage</title>
 
     <style>
-        .column{
+        .column {
             float: left;
-            width: 33%;
+
         }
     </style>
 </head>
 
 <body>
-<div class="container">
-    <div class="row is-mobile is-multiline" >
-        <div class="column is-half-mobile">
-            <strong>HK Island</strong>
+    <div class="container">
+        <div class="columns">
+            <div class="column  is-one-third">
+                <strong>HK Island</strong>
                 <% qpons.forEach( function(qpon) { %>
-                    <% if (qpon.region == "HKIsland") { %>
-                        <div class="box">
-                            <img src="<%= qpon.image %>" width="300" height="300">
-                            <div>
-                                <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
-                                <p><%= qpon.title %></p>
-                                <br>
-                                <p>Coins: <%= qpon.coins %></p>
-                            </div>
-                        </div>
-                    <% } %>
+                <% if (qpon.region == "HKIsland") { %>
+                <div class="box">
+                    <img src="<%= qpon.image %>" width="300" height="300">
+                    <div>
+                        <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong
+                                style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
+                        <p><%= qpon.title %></p>
+                        <br>
+                        <p>Coins: <%= qpon.coins %></p>
+                    </div>
+                </div>
+                <% } %>
                 <% }); %>
-        </div>
-        <div class="column is-half-mobile">
-            <strong>Kowloon</strong>
-            <% qpons.forEach( function(qpon) { %>
+            </div>
+            <div class="column is-one-third">
+                <strong>Kowloon</strong>
+                <% qpons.forEach( function(qpon) { %>
                 <% if (qpon.region == "Kowloon") { %>
-                    <div class="box">
-                        <img src="<%= qpon.image %>" width="300" height="300">
-                        <div>
-                            <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
-                            <p><%= qpon.title %></p>
-                            <br>
-                            <p>Coins: <%= qpon.coins %></p>
-                        </div>
+                <div class="box">
+                    <img src="<%= qpon.image %>" width="300" height="300">
+                    <div>
+                        <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong
+                                style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
+                        <p><%= qpon.title %></p>
+                        <br>
+                        <p>Coins: <%= qpon.coins %></p>
                     </div>
+                </div>
                 <% } %>
-            <% }); %>
-        </div>
-        <div class="column is-half-mobile">
-            <strong>New Territories</strong>
-            <% qpons.forEach( function(qpon) { %>
+                <% }); %>
+            </div>
+            <div class="column is-one-third">
+                <strong>New Territories</strong>
+                <% qpons.forEach( function(qpon) { %>
                 <% if (qpon.region == "NT") { %>
-                    <div class="box">
-                        <img src="<%= qpon.image %>" width="300" height="300">
-                        <div>
-                            <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
-                            <p><%= qpon.title %></p>
-                            <br>
-                            <p>Coins: <%= qpon.coins %></p>
-                        </div>
+                <div class="box">
+                    <img src="<%= qpon.image %>" width="300" height="300">
+                    <div>
+                        <a class="hyperlink" href="http://localhost:1337/qpon/read/<%= qpon.id %>"><strong
+                                style="font-size: x-large;"><%= qpon.restaurant %></strong></a>
+                        <p><%= qpon.title %></p>
+                        <br>
+                        <p>Coins: <%= qpon.coins %></p>
                     </div>
+                </div>
                 <% } %>
-            <% }); %>
+                <% }); %>
+            </div>
         </div>
+
     </div>
-</div>
 
 
 
 </body>
+
 </html>
