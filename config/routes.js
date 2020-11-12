@@ -64,6 +64,6 @@ module.exports.routes = {
  'POST /user/:id/redeemed/add/:fk': 'UserController.add',
  'POST /user/:id/redeemed/remove/:fk': 'UserController.remove',
 
- 'GET /qpon/list/:id': 'QponController.populate',
+ 'GET /qpon/list/:id': 'QponController.redeemedby',
  'GET /qpon/redeemed': 'UserController.redeemed',
 };

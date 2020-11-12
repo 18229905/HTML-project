@@ -72,6 +72,7 @@ module.exports = {
         return res.view('qpon/redeemed', { users: user });
     },
     
+    
 
     add: async function (req, res) {
 

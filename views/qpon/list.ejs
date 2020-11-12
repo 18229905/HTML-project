@@ -6,7 +6,9 @@
         <div class="container">
         <table class="table is-bordered is-striped is-hoverable is-fullwidth" >
                 <tr><td>ID</td><td>Name</td></tr>
-                
+                <% qpons.redeemedby.forEach( function(user) { %>
+                    <tr><td><%= user.id %></td><td><%= user.username %></td></tr>
+                    <% }); %>
 
                 
         </table>

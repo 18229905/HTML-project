@@ -134,5 +134,10 @@ populate: async function (req, res) {
     return res.json(qpon);
 },
 
+redeemedby: async function (req, res) {
+    var qpon = await Qpon.findOne(req.params.id).populate("redeemedby");
+    return res.view('qpon/list', { qpons: qpon });
+},
+
 };
 
