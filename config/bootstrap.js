@@ -63,10 +63,11 @@ module.exports.bootstrap = async function() {
     return;
 }
   await Qpon.createEach([
-    { title: "50% off", restaurant: "ABC restaurant",region:"Kowloon",mall:"Elements", image:"https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/ElementsLogo.svg/1200px-ElementsLogo.svg.png" ,quota:3,coins:100,date:"2020-10-28",detail:"abc",id:1},
-    { title: "40% off", restaurant: "XYZ restaurant", region:"NT",mall:"New Town Plaza",image:"https://www.ciaogogo.com/image/cache/data/brand/newtownplaza%20logo-278x278_0.JPG",quota:5,coins:50,date:"2020-10-28",detail:"xyz", id:2},
-    { title: "30% off", restaurant: "XYZ restaurant", region:"HKIsland",mall:"IFC Mall",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS11861AzIJC5_roP5IM2E4zGoAsTbWW-nbhg&usqp=CAU",quota:7,coins:70,date:"2020-10-28",detail:"XYZ", id:3},
-    { title: "20% off", restaurant: "XYZ restaurant", region:"HKIsland",mall:"IFC Mall",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS11861AzIJC5_roP5IM2E4zGoAsTbWW-nbhg&usqp=CAU",quota:7,coins:70,date:"2020-10-27",detail:"XYZ", id:4}
+    { title: "50% off", restaurant: "ABC restaurant",region:"Kowloon",mall:"Elements", image:"https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/ElementsLogo.svg/1200px-ElementsLogo.svg.png" ,quota:3,coins:100,date:"2021-6-4",detail:"abc",id:1},
+    { title: "40% off", restaurant: "DEF restaurant", region:"NT",mall:"New Town Plaza",image:"https://www.ciaogogo.com/image/cache/data/brand/newtownplaza%20logo-278x278_0.JPG",quota:5,coins:50,date:"2021-10-1",detail:"def", id:2},
+    { title: "30% off", restaurant: "HIJ restaurant", region:"HKIsland",mall:"IFC Mall",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS11861AzIJC5_roP5IM2E4zGoAsTbWW-nbhg&usqp=CAU",quota:7,coins:300,date:"2021-7-21",detail:"hij", id:3},
+    { title: "20% off", restaurant: "XYZ restaurant", region:"HKIsland",mall:"IFC Mall",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS11861AzIJC5_roP5IM2E4zGoAsTbWW-nbhg&usqp=CAU",quota:7,coins:500,date:"2021-8-31",detail:"XYZ", id:4},
+    { title: "70% off", restaurant: "123 restaurant", region:"Kowloon",mall:"APM",image:"https://www.hkapm.com.hk/lib/img/apm/header/apm.png",quota:7,coins:900,date:"2021-10-10",detail:"123", id:5}
     // etc.
   ]);
 

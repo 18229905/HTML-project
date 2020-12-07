@@ -24,7 +24,6 @@ module.exports.policies = {
     create: 'isAdmin',
     list: 'isAdmin',
     update: "isAdmin",
-    json: "isAdmin",
     delete: "isAdmin",
     populate: "isAdmin",
   }
