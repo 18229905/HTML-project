@@ -16,7 +16,7 @@ a [Sails v1](https://sailsjs.com) application
 
 This app was originally generated on Mon Oct 12 2020 21:14:16 GMT+0800 (GMT+08:00) using Sails v1.4.0.
 
-####
+#### Brief explanations 
 This project is developing a online platform for user to redeem coupon. 
 In this platform, there are search function, redeem function for user. And also create, delete and update coupon function for coupon owner. 
 Except the search function, other function require user to login first.
